@@ -1,0 +1,6 @@
+@NetCore.Ambev.Api_HostAddress = http://localhost:5003
+
+GET {{NetCore.Ambev.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
