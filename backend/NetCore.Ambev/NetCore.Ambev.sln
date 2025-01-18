@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore.Ambev.Api", "src\Ne
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{842D7ED5-E433-49EE-853B-C2CB9245893C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore.Ambev.Infra", "src\NetCore.Ambev.Infra\NetCore.Ambev.Infra.csproj", "{0DFB8994-14D1-415D-A95A-7597E4FAE5B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{BABA5C78-4A79-43D8-AAAF-5A06EA53E8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BABA5C78-4A79-43D8-AAAF-5A06EA53E8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BABA5C78-4A79-43D8-AAAF-5A06EA53E8F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DFB8994-14D1-415D-A95A-7597E4FAE5B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DFB8994-14D1-415D-A95A-7597E4FAE5B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DFB8994-14D1-415D-A95A-7597E4FAE5B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DFB8994-14D1-415D-A95A-7597E4FAE5B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +62,7 @@ Global
 		{C3CA7FEB-AA13-4A55-8526-18F3165B2086} = {E28D7AF0-ED1F-48E0-B534-5876AFD18C2C}
 		{BABA5C78-4A79-43D8-AAAF-5A06EA53E8F0} = {842D7ED5-E433-49EE-853B-C2CB9245893C}
 		{842D7ED5-E433-49EE-853B-C2CB9245893C} = {E28D7AF0-ED1F-48E0-B534-5876AFD18C2C}
+		{0DFB8994-14D1-415D-A95A-7597E4FAE5B3} = {E28D7AF0-ED1F-48E0-B534-5876AFD18C2C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EEF92EB-B54F-495D-879E-8B4C91C5D4D5}
