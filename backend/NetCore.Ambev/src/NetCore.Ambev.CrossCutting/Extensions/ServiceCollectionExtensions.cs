@@ -28,7 +28,11 @@ namespace NetCore.Ambev.CrossCutting.Extensions
             });
 
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            var handler = AppDomain.CurrentDomain.Load("NetCore.Ambev.Application");
+            services.AddMediatR(x => x.RegisterServicesFromAssembly(handler));
 
             return services;
         }

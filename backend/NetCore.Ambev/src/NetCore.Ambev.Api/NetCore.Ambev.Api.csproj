@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NetCore.Ambev.Application\NetCore.Ambev.Application.csproj" />
     <ProjectReference Include="..\NetCore.Ambev.CrossCutting\NetCore.Ambev.CrossCutting.csproj" />
   </ItemGroup>
 

@@ -6,6 +6,8 @@ namespace NetCore.Ambev.Infra.Repositories
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private IProductRepository? _productRepository;
+        private ICartRepository? _cartRepository;
+
         private readonly AmbevDbContext _context;
 
         public UnitOfWork(AmbevDbContext context)
@@ -19,6 +21,15 @@ namespace NetCore.Ambev.Infra.Repositories
             {
                 return _productRepository = _productRepository ??
                     new Repositories.ProductRepository(_context);
+            }
+        }
+
+        public ICartRepository CartRepository
+        {
+            get
+            {
+                return _cartRepository = _cartRepository ??
+                    new Repositories.CartRepository(_context);
             }
         }
 

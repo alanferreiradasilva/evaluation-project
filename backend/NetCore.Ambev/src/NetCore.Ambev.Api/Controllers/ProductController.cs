@@ -1,30 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using NetCore.Ambev.Abstractions.Repositories;
+using NetCore.Ambev.Application.Produtcs.Queries;
 
 namespace NetCore.Ambev.Api.Controllers
-{
-    [Route("api/[controller]"), ApiController]
-    public class ProductController : ControllerBase
+{    
+    public class ProductController : BaseApiController
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMediator _mediator;
 
-        public ProductController(IUnitOfWork unitOfWork)
+        public ProductController(IMediator mediator)
         {
-            _unitOfWork = unitOfWork;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
-            var products = await _unitOfWork.ProductRepository.GetAsync();
-            return Ok(products);
+            var query = new GetProductQuery();
+            var entities = await _mediator.Send(query);
+            return Ok(entities);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> FindAsync(int id)
         {
-            var product = await _unitOfWork.ProductRepository.FindAsync(id);
-            return Ok(product);
+            var query = new GetProductByIdQuery() { Id = id };
+            var entity = await _mediator.Send(query);
+            return Ok(entity);
         }
+
+        
     }
 }
