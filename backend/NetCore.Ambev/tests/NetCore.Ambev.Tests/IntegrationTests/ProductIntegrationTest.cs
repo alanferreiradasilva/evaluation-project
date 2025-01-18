@@ -13,15 +13,12 @@ namespace NetCore.Ambev.Tests.IntegrationTests
                 .UseNpgsql(ConnectionString)
                 .UseSeeding((context, _) =>
                 {
+                    context.Database.Migrate();
                     context.Products.AddRange(ProductSeed.Seed());
                     context.SaveChanges();
                 })
                 .Options;
 
-            using (var context = new AmbevDbContext(baseOptions))
-            {
-                context.Database.Migrate(); // Aplica as migrations antes de cada teste
-            }
         }
 
         [Fact]

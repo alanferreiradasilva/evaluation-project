@@ -15,19 +15,29 @@ namespace NetCore.Ambev.Infra.Repositories
             _dbSet = _dbContext.Set<T>();
         }
 
-        public Task<T> AddAsync(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _dbSet.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
+            return entity;
         }
 
-        public Task<T> DeleteAsync(int id)
+        public async Task<T> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _dbSet.FindAsync(id);
+            if (entity == null)
+            {
+                return null;
+            }
+
+            _dbSet.Remove(entity);
+            await _dbContext.SaveChangesAsync();
+            return entity;
         }
 
-        public Task<IEnumerable<T>> GetAsync()
+        public async Task<IEnumerable<T>> GetAsync()
         {
-            throw new NotImplementedException();
+            return await _dbSet.ToListAsync();
         }
 
         public async Task<T> FindAsync(int id)
@@ -35,9 +45,10 @@ namespace NetCore.Ambev.Infra.Repositories
             return await _dbSet.FindAsync(id);
         }
 
-        public void UpdateAsync(T entity)
+        public async void UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            _dbContext.Entry(entity).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using NetCore.Ambev.Abstractions.Repositories;
 using NetCore.Ambev.Infra.Context;
+using NetCore.Ambev.Infra.Repositories;
 using NetCore.Ambev.Infra.Settings;
 using Npgsql;
 using System.Data;
@@ -9,7 +11,7 @@ namespace NetCore.Ambev.CrossCutting.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddInfrastructure(
+        public static IServiceCollection AddCustomInfrastructure(
                   this IServiceCollection services)
         {
             string defaultConnection = EnvironmentSettings.DefaultConnection;
@@ -24,6 +26,9 @@ namespace NetCore.Ambev.CrossCutting.Extensions
                 connection.Open();
                 return connection;
             });
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }
