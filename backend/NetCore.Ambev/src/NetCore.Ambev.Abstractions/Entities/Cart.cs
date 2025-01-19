@@ -23,6 +23,9 @@ namespace NetCore.Ambev.Abstractions.Entities
             DomainValidation.When(products.Count() == 0,
                 "Invalid Product List. Cart must be almost one product.");
 
+            DomainValidation.When(products.Any(x => x.ProductId == 0), "Invalid product. Product Id must be valid.");
+            DomainValidation.When(products.Any(x => x.Quantity == 0), "Invalid product quantity. Product quantity must be 1 or greater.");
+
             UserId = userId;
             Date = DateTime.UtcNow;
         }

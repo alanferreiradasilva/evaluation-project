@@ -7,10 +7,13 @@ namespace NetCore.Ambev.Application.Carts.Commands.Validations
         public CreateCartCommandValidation()
         {
             RuleFor(x => x.Products)
-                .NotEmpty().WithMessage("Cart must be almost one product")
-
-                ;
-
+                .NotNull()
+                    .WithMessage("Invalid Cart Product list. Cart must be almost one product.")
+                .NotEmpty()
+                    .WithMessage("Cart must be almost one product.")
+                .Must(products => products.All(product => product.ProductId > 0 && product.Quantity > 0))
+                    .WithMessage("Invalid Cart Product. ProductId and Quantity must be greater than zero.");
+            ;
         }
     }
 }

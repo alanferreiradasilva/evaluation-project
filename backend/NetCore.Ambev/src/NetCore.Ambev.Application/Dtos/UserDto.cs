@@ -1,4 +1,5 @@
-﻿using NetCore.Ambev.Abstractions.Entities;
+﻿using Mapster;
+using NetCore.Ambev.Abstractions.Entities;
 
 namespace NetCore.Ambev.Application.Dtos
 {
@@ -10,6 +11,7 @@ namespace NetCore.Ambev.Application.Dtos
 
         public UserNameDto Name { get; set; }
         public UserAddressDto Address { get; set; }
+        public UserGeolocationDto Geolocation { get; set; }
 
         public UserStatus Status { get; set; }
         public UserRole Role { get; set; }

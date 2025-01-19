@@ -1,11 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NetCore.Ambev.Abstractions.Repositories;
+using NetCore.Ambev.Application.Carts.Commands.Validations;
 using NetCore.Ambev.Infra.Context;
 using NetCore.Ambev.Infra.Repositories;
 using NetCore.Ambev.Infra.Settings;
 using Npgsql;
 using System.Data;
+using System.Reflection;
 
 namespace NetCore.Ambev.CrossCutting.Extensions
 {
@@ -32,8 +35,16 @@ namespace NetCore.Ambev.CrossCutting.Extensions
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-            var handler = AppDomain.CurrentDomain.Load("NetCore.Ambev.Application");
-            services.AddMediatR(x => x.RegisterServicesFromAssembly(handler));
+            string assemblyApplicationName = "NetCore.Ambev.Application";
+
+            var handler = AppDomain.CurrentDomain.Load(assemblyApplicationName);
+
+            services.AddMediatR(x => {
+                x.RegisterServicesFromAssembly(handler);
+                x.AddOpenBehavior(typeof(ValidationBehaviour<,>));
+            });
+
+            services.AddValidatorsFromAssembly(Assembly.Load(assemblyApplicationName));
 
             return services;
         }

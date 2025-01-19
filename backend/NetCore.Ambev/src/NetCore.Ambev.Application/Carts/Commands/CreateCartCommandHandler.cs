@@ -1,11 +1,7 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using NetCore.Ambev.Abstractions.Entities;
 using NetCore.Ambev.Abstractions.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NetCore.Ambev.Application.Carts.Commands
 {
@@ -20,7 +16,9 @@ namespace NetCore.Ambev.Application.Carts.Commands
 
         public async Task<Cart> Handle(CreateCartCommand request, CancellationToken cancellationToken)
         {
-            var guestUserId = 1;
+            //_validator.ValidateAndThrow(request);
+
+            var guestUserId = 3;
             var entity = new Cart(guestUserId, request.Products);
 
             //await _unitOfWork.CartRepository.AddAsync(entity);

@@ -31,20 +31,5 @@ namespace NetCore.Ambev.Api.Controllers
 
             return CreatedAtAction(nameof(FindAsync), new { id = entity.Id }, entity);
         }
-
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> FindAsync(int id)
-        //{
-        //    var product = await _unitOfWork.ProductRepository.FindAsync(id);
-        //    return Ok(product);
-        //}
-
-        //[HttpPost]
-        //public async Task<IActionResult> PostAsync([FromBody]CreateCartCommand command)
-        //{
-        //    var entity = await _mediator.Send(command);
-
-        //    return CreatedAtAction(nameof(FindAsync), new { id = entity.Id }, entity);
-        //}
     }
 }

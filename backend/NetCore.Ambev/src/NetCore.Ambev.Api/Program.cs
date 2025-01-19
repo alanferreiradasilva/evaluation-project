@@ -1,3 +1,4 @@
+using NetCore.Ambev.Api.Filters;
 using NetCore.Ambev.CrossCutting.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddCustomInfrastructure();
+builder.Services.RegisterCustomMaps();
+
+builder.Services.AddMvc(x =>
+{
+    x.Filters.Add(new CustomExceptionFilter());
+});
 
 var app = builder.Build();
 
