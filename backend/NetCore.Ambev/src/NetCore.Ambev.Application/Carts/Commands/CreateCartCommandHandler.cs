@@ -23,8 +23,8 @@ namespace NetCore.Ambev.Application.Carts.Commands
             var guestUserId = 1;
             var entity = new Cart(guestUserId, request.Products);
 
-            await _unitOfWork.CartRepository.AddAsync(entity);
-            await _unitOfWork.CommitAsync();
+            //await _unitOfWork.CartRepository.AddAsync(entity);
+            //await _unitOfWork.CommitAsync();
 
             return entity;
         }

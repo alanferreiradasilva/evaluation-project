@@ -5,6 +5,7 @@ namespace NetCore.Ambev.Infra.Repositories
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
+        private IUserRepository? _userRepository;
         private IProductRepository? _productRepository;
         private ICartRepository? _cartRepository;
 
@@ -15,6 +16,14 @@ namespace NetCore.Ambev.Infra.Repositories
             _context = context;
         }
 
+        public IUserRepository UserRepository
+        {
+            get
+            {
+                return _userRepository = _userRepository ??
+                    new Repositories.UserRepository(_context);
+            }
+        }
         public IProductRepository ProductRepository
         {
             get

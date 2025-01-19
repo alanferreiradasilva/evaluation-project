@@ -1,15 +1,12 @@
 ﻿using NetCore.Ambev.Abstractions.Entities.Validations;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Diagnostics;
 
 namespace NetCore.Ambev.Abstractions.Entities
 {
     public class Cart : BaseEntity
     {
-        public int UserId { get; set; }
-        public DateTime Date { get; set; }
-        public IEnumerable<CartProduct> Products { get; set; }
+        public int UserId { get;private set; }
+        public DateTime Date { get;private set; }
+        public IEnumerable<CartProduct> Products { get;private set; }
 
         public Cart() {}
 
@@ -18,7 +15,7 @@ namespace NetCore.Ambev.Abstractions.Entities
             ValidateDomain(userId, products);
         }
 
-        private void ValidateDomain(int userId, IEnumerable<CartProduct> products, bool newDate = false)
+        private void ValidateDomain(int userId, IEnumerable<CartProduct> products)
         {
             DomainValidation.When(userId <= 0,
                 "Invalid User Id.");

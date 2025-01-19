@@ -1,14 +1,15 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using NetCore.Ambev.Application.Produtcs.Queries;
+using NetCore.Ambev.Application.Users.Queries;
 
 namespace NetCore.Ambev.Api.Controllers
 {
-    public class ProductController : BaseApiController
+    public class UserController : BaseApiController
     {
         private readonly IMediator _mediator;
 
-        public ProductController(IMediator mediator)
+        public UserController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -16,19 +17,9 @@ namespace NetCore.Ambev.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
-            var query = new GetProductQuery();
+            var query = new GetUserQuery();
             var entities = await _mediator.Send(query);
             return Ok(entities);
         }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> FindAsync(int id)
-        {
-            var query = new GetProductByIdQuery() { Id = id };
-            var entity = await _mediator.Send(query);
-            return Ok(entity);
-        }
-
-        
     }
 }

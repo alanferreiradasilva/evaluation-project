@@ -11,10 +11,12 @@ namespace NetCore.Ambev.Infra.Context
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ProductConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
         }
     }
 }

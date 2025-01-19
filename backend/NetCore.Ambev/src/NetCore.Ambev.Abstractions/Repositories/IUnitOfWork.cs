@@ -2,6 +2,7 @@
 {
     public interface IUnitOfWork
     {
+        IUserRepository UserRepository { get; }
         IProductRepository ProductRepository { get; }
         ICartRepository CartRepository { get; }
 

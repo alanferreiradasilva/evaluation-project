@@ -32,6 +32,32 @@ namespace NetCore.Ambev.Infra.Migrations
                     table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Username = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
+                    Password = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: false),
+                    Phone = table.Column<string>(type: "text", nullable: false),
+                    Firstname = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Lastname = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    City = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Street = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Number = table.Column<int>(type: "integer", nullable: false),
+                    Zipcode = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
+                    Lat = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
+                    Long = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
+                    Status = table.Column<int>(type: "integer", nullable: false),
+                    Role = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "Category", "Description", "Image", "Price", "Rate", "RateCount", "Title" },
@@ -48,6 +74,16 @@ namespace NetCore.Ambev.Infra.Migrations
                     { 9, "Electronics", "4K Smart TV with HDR and artificial intelligence.", "https://example.com/smartTV.jpg", 2499.99m, 4.9m, 147, "Smart TV UVW" },
                     { 10, "Games", "Next-generation gaming console with exclusive games.", "https://example.com.videogame.jpg", 2999.90m, 4.7m, 190, "Video Game XYZ" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "City", "Email", "Firstname", "Lastname", "Lat", "Long", "Number", "Password", "Phone", "Role", "Status", "Street", "Username", "Zipcode" },
+                values: new object[,]
+                {
+                    { 1, "Rio", "admin@mail.com", "Admin", "Brazil", null, null, 100, "fcf41657f02f88137a1bcf068a32c0a3", "0000-0000", 2, 0, "Liberty", "admin", "00000-000" },
+                    { 2, "Rio", "manager@mail.com", "John", "Doe", null, null, 100, "fcf41657f02f88137a1bcf068a32c0a3", "0000-0000", 1, 0, "Liberty", "manager", "00000-000" },
+                    { 3, "Rio", "guest@mail.com", "Guest", "da Silva", null, null, 100, "fcf41657f02f88137a1bcf068a32c0a3", "0000-0000", 0, 0, "Liberty", "guest", "00000-000" }
+                });
         }
 
         /// <inheritdoc />
@@ -55,6 +91,9 @@ namespace NetCore.Ambev.Infra.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

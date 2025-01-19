@@ -12,16 +12,15 @@ namespace NetCore.Ambev.Tests.IntegrationTests.Seeds
         {
             var faker = new Faker();
 
-            return new Product
-            {
-                Title = faker.Commerce.ProductName(),
-                Description = faker.Commerce.ProductDescription(),
-                Price = faker.Random.Decimal(0, 1000),
-                Image = faker.Image.PicsumUrl(),
-                Rate = faker.Random.Number(0, 5),
-                RateCount = faker.Random.Number(0, 1000),
-                Category = faker.Random.ListItem(categories)
-            };
+            return new Product(
+                faker.Commerce.ProductName(),
+                faker.Random.Decimal(0, 1000),
+                faker.Commerce.ProductDescription(),
+                faker.Random.ListItem(categories),
+                faker.Image.PicsumUrl(),
+                faker.Random.Number(0, 5),
+                faker.Random.Number(0, 1000)
+            );
         }
 
         public static IEnumerable<Product> Seed()

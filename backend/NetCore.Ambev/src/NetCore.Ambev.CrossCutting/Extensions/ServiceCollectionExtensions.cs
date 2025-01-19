@@ -27,6 +27,7 @@ namespace NetCore.Ambev.CrossCutting.Extensions
                 return connection;
             });
 
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();

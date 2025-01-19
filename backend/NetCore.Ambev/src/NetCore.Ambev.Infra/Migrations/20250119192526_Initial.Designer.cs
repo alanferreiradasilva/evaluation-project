@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NetCore.Ambev.Infra.Migrations
 {
     [DbContext(typeof(AmbevDbContext))]
-    [Migration("20250118193621_Initial")]
+    [Migration("20250119192526_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -176,6 +176,130 @@ namespace NetCore.Ambev.Infra.Migrations
                             Rate = 4.7m,
                             RateCount = 190,
                             Title = "Video Game XYZ"
+                        });
+                });
+
+            modelBuilder.Entity("NetCore.Ambev.Abstractions.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Firstname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Lastname")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Lat")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<string>("Long")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("character varying(40)");
+
+                    b.Property<string>("Zipcode")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "Rio",
+                            Email = "admin@mail.com",
+                            Firstname = "Admin",
+                            Lastname = "Brazil",
+                            Number = 100,
+                            Password = "fcf41657f02f88137a1bcf068a32c0a3",
+                            Phone = "0000-0000",
+                            Role = 2,
+                            Status = 0,
+                            Street = "Liberty",
+                            Username = "admin",
+                            Zipcode = "00000-000"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "Rio",
+                            Email = "manager@mail.com",
+                            Firstname = "John",
+                            Lastname = "Doe",
+                            Number = 100,
+                            Password = "fcf41657f02f88137a1bcf068a32c0a3",
+                            Phone = "0000-0000",
+                            Role = 1,
+                            Status = 0,
+                            Street = "Liberty",
+                            Username = "manager",
+                            Zipcode = "00000-000"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "Rio",
+                            Email = "guest@mail.com",
+                            Firstname = "Guest",
+                            Lastname = "da Silva",
+                            Number = 100,
+                            Password = "fcf41657f02f88137a1bcf068a32c0a3",
+                            Phone = "0000-0000",
+                            Role = 0,
+                            Status = 0,
+                            Street = "Liberty",
+                            Username = "guest",
+                            Zipcode = "00000-000"
                         });
                 });
 #pragma warning restore 612, 618
