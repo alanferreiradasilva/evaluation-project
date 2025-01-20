@@ -28,6 +28,7 @@ namespace NetCore.Ambev.Abstractions.Entities
 
             UserId = userId;
             Date = DateTime.UtcNow;
+            Products = products;
         }
     }
 }

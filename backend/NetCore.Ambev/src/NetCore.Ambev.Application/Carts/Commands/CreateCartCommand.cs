@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using NetCore.Ambev.Abstractions.Entities;
+using NetCore.Ambev.Application.Dtos;
 
 namespace NetCore.Ambev.Application.Carts.Commands
 {
-    public sealed class CreateCartCommand : IRequest<Cart>
+    public sealed class CreateCartCommand : IRequest<CartDto>
     {
-        public IEnumerable<CartProduct> Products { get; set; }
+        public IEnumerable<CartProductDto> Products { get; set; }
     }
 }

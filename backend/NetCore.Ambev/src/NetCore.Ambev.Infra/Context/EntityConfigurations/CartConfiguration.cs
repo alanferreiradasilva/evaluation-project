@@ -8,7 +8,10 @@ namespace NetCore.Ambev.Infra.Context.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(m => m.Id);
+            builder.Property(m => m.UserId).IsRequired();
+            builder.Property(m => m.Date).IsRequired();
+            
         }
     }
 }

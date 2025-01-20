@@ -2,9 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NetCore.Ambev.Abstractions.Repositories;
+using NetCore.Ambev.Abstractions.Repositories.NoSql;
 using NetCore.Ambev.Application.Carts.Commands.Validations;
 using NetCore.Ambev.Infra.Context;
 using NetCore.Ambev.Infra.Repositories;
+using NetCore.Ambev.Infra.Repositories.NoSql;
 using NetCore.Ambev.Infra.Settings;
 using Npgsql;
 using System.Data;
@@ -34,6 +36,7 @@ namespace NetCore.Ambev.CrossCutting.Extensions
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ICartNoSqlRepository, CartNoSqlRepository>();
 
             string assemblyApplicationName = "NetCore.Ambev.Application";
 
