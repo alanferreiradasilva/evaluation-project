@@ -18,6 +18,11 @@ namespace NetCore.Ambev.Infra.Settings
             get => GetEnvironmentOrDefault("AMBEV_POSTGRES_CONNECTION_TEST");
         }
 
+        public static string DefaultMongoConnection
+        {
+            get => GetEnvironmentOrDefault("AMBEV_MONGO_CONNECTION");
+        }
+
         private static string GetEnvironmentOrDefault(string variable)
         {
             return Environment.GetEnvironmentVariable(variable, EnvironmentVariableTarget.User) ?? string.Empty;

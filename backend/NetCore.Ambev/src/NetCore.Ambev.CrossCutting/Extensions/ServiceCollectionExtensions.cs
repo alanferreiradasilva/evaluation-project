@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 using NetCore.Ambev.Abstractions.Repositories;
 using NetCore.Ambev.Abstractions.Repositories.NoSql;
 using NetCore.Ambev.Application.Carts.Commands.Validations;
@@ -32,10 +33,14 @@ namespace NetCore.Ambev.CrossCutting.Extensions
                 return connection;
             });
 
+            services.AddMongoDB();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<ICartRepository, CartRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ICartRepository, CartRepository>();            
+
+            services.AddScoped<INoSqlUnitOfWork, NoSqlUnitOfWork>();
             services.AddScoped<ICartNoSqlRepository, CartNoSqlRepository>();
 
             string assemblyApplicationName = "NetCore.Ambev.Application";
@@ -50,6 +55,15 @@ namespace NetCore.Ambev.CrossCutting.Extensions
             services.AddValidatorsFromAssembly(Assembly.Load(assemblyApplicationName));
 
             return services;
+        }
+
+        private static void AddMongoDB(this IServiceCollection services)
+        {
+            services.AddScoped<IMongoClient>(sp =>
+            {
+                var connectionString = EnvironmentSettings.DefaultMongoConnection;
+                return new MongoClient(connectionString);
+            });
         }
     }
 }

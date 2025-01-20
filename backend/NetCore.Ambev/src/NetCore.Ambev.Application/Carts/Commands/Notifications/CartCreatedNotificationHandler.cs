@@ -4,12 +4,12 @@ using NetCore.Ambev.Abstractions.Repositories;
 
 namespace NetCore.Ambev.Application.Carts.Commands.Notifications
 {
-    public class CartCreatedDataHandler : INotificationHandler<CartCreatedNotification>
+    public class CartCreatedNotificationHandler : INotificationHandler<CartCreatedNotification>
     {
-        private readonly ILogger<CartCreatedDataHandler> _logger;
+        private readonly ILogger<CartCreatedNotificationHandler> _logger;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CartCreatedDataHandler(ILogger<CartCreatedDataHandler> logger, IUnitOfWork unitOfWork)
+        public CartCreatedNotificationHandler(ILogger<CartCreatedNotificationHandler> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;

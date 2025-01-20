@@ -15,6 +15,13 @@ namespace NetCore.Ambev.Api.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAsync()
+        {
+            var query = new GetCartsQuery();
+            var entity = await _mediator.Send(query);
+            return Ok(entity);
+        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> FindAsync(int id)

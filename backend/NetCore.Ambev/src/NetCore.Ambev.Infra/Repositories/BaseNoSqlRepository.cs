@@ -10,7 +10,7 @@ namespace NetCore.Ambev.Infra.Repositories
 
         protected BaseNoSqlRepository(IMongoClient mongoClient)
         {
-            string databaseName = "mongodb://localhost:27017/";
+            string databaseName = "ambev-nosql";
             var database = mongoClient.GetDatabase(databaseName);
             _collection = database.GetCollection<T>(typeof(T).Name);
         }
