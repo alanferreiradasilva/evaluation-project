@@ -7,6 +7,7 @@ namespace NetCore.Ambev.Infra.Repositories.NoSql
     public class NoSqlUnitOfWork : INoSqlUnitOfWork, IDisposable
     {        
         private ICartNoSqlRepository? _cartNoSqlRepository;
+        private IUserNoSqlRepository? _userNoSqlRepository;
      
         private readonly IMongoClient _mongoClient;
 
@@ -21,6 +22,15 @@ namespace NetCore.Ambev.Infra.Repositories.NoSql
             {
                 return _cartNoSqlRepository = _cartNoSqlRepository ??
                     new Repositories.NoSql.CartNoSqlRepository(_mongoClient);
+            }
+        }
+
+        public IUserNoSqlRepository UserNoSqlRepository
+        {
+            get
+            {
+                return _userNoSqlRepository = _userNoSqlRepository ??
+                    new Repositories.NoSql.UserNoSqlRepository(_mongoClient);
             }
         }
 

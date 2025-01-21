@@ -20,9 +20,7 @@ namespace NetCore.Ambev.Application.Carts.Commands
         }
 
         public async Task<CartDto> Handle(CreateCartCommand request, CancellationToken cancellationToken)
-        {
-            //_validator.ValidateAndThrow(request);
-
+        {           
             var guestUserId = 3;
             var products = request.Products.Adapt<List<CartProduct>>();
             var entity = new Cart(guestUserId, products);

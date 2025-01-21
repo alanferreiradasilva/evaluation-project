@@ -42,6 +42,7 @@ namespace NetCore.Ambev.CrossCutting.Extensions
 
             services.AddScoped<INoSqlUnitOfWork, NoSqlUnitOfWork>();
             services.AddScoped<ICartNoSqlRepository, CartNoSqlRepository>();
+            services.AddScoped<IUserNoSqlRepository, UserNoSqlRepository>();
 
             string assemblyApplicationName = "NetCore.Ambev.Application";
 

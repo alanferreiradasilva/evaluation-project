@@ -1,10 +1,14 @@
 ﻿namespace NetCore.Ambev.Abstractions.Entities
 {
     public class CartProduct : BaseEntity
-    {
-        public int CartId { get; private set; }
+    {        
         public int ProductId { get; private set; }
         public int Quantity { get; private set; }
+        public int CartId { get; private set; }
+        
+        public Cart Cart { get; set; }
+        public Product Product { get; set; }
+
 
         public CartProduct() {}
 

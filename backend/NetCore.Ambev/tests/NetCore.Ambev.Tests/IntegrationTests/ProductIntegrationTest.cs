@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NetCore.Ambev.Infra.Context;
-using NetCore.Ambev.Infra.Settings;
 using NetCore.Ambev.Tests.IntegrationTests.Seeds;
 
 namespace NetCore.Ambev.Tests.IntegrationTests

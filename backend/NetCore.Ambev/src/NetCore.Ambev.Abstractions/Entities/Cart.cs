@@ -6,7 +6,7 @@ namespace NetCore.Ambev.Abstractions.Entities
     {
         public int UserId { get;private set; }
         public DateTime Date { get;private set; }
-        public IEnumerable<CartProduct> Products { get;private set; }
+        public IEnumerable<CartProduct> CartProducts { get;private set; }
 
         public Cart() {}
 
@@ -15,20 +15,20 @@ namespace NetCore.Ambev.Abstractions.Entities
             ValidateDomain(userId, products);
         }
 
-        private void ValidateDomain(int userId, IEnumerable<CartProduct> products)
+        private void ValidateDomain(int userId, IEnumerable<CartProduct> cartProducts)
         {
             DomainValidation.When(userId <= 0,
                 "Invalid User Id.");
 
-            DomainValidation.When(products.Count() == 0,
+            DomainValidation.When(cartProducts.Count() == 0,
                 "Invalid Product List. Cart must be almost one product.");
 
-            DomainValidation.When(products.Any(x => x.ProductId == 0), "Invalid product. Product Id must be valid.");
-            DomainValidation.When(products.Any(x => x.Quantity == 0), "Invalid product quantity. Product quantity must be 1 or greater.");
+            DomainValidation.When(cartProducts.Any(x => x.ProductId == 0), "Invalid product. Product Id must be valid.");
+            DomainValidation.When(cartProducts.Any(x => x.Quantity == 0), "Invalid product quantity. Product quantity must be 1 or greater.");
 
             UserId = userId;
             Date = DateTime.UtcNow;
-            Products = products;
+            CartProducts = cartProducts;
         }
     }
 }

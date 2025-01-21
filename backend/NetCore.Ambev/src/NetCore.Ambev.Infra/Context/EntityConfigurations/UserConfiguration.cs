@@ -31,7 +31,7 @@ namespace NetCore.Ambev.Infra.Context.EntityConfigurations
                 new User(1, "admin@mail.com", "admin", "fcf41657f02f88137a1bcf068a32c0a3", "0000-0000", "Admin", "Brazil", "Rio", "Liberty", 100, "00000-000", null, null, UserStatus.Active, UserRole.Admin),
                 new User(2, "manager@mail.com", "manager", "fcf41657f02f88137a1bcf068a32c0a3", "0000-0000", "John", "Doe", "Rio", "Liberty", 100, "00000-000", null, null, UserStatus.Active, UserRole.Manager),
                 new User(3, "guest@mail.com", "guest", "fcf41657f02f88137a1bcf068a32c0a3", "0000-0000", "Guest", "da Silva", "Rio", "Liberty", 100, "00000-000", null, null, UserStatus.Active, UserRole.Customer)
-            ); ;
+            );
         }
     }
 }

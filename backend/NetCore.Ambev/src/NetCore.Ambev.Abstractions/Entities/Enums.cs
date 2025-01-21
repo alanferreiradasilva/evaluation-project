@@ -13,4 +13,10 @@
         Manager,
         Admin
     }
+
+    public enum SaleState
+    {
+        Cancelled,
+        NotCancelled
+    }
 }

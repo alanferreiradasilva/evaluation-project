@@ -3,5 +3,6 @@
     public interface INoSqlUnitOfWork
     {
         ICartNoSqlRepository CartNoSqlRepository { get; }
+        IUserNoSqlRepository UserNoSqlRepository { get; }
     }
 }
