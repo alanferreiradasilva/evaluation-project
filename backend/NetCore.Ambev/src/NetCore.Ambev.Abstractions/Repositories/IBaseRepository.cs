@@ -1,4 +1,6 @@
 ﻿using NetCore.Ambev.Abstractions.Entities;
+using NetCore.Ambev.Abstractions.Entities.Paging;
+using System.Linq.Expressions;
 
 namespace NetCore.Ambev.Abstractions.Repositories
 {
@@ -9,5 +11,11 @@ namespace NetCore.Ambev.Abstractions.Repositories
         Task<T> AddAsync(T entity);
         void UpdateAsync(T entity);
         Task<T> DeleteAsync(int id);
+
+        Task<PagedList<T>> GetListAsync(
+            Expression<Func<T, bool>> filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            int? page = null,
+            int? pageSize = null);
     }
 }

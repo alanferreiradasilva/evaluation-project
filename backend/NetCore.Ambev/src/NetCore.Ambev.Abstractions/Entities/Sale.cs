@@ -52,6 +52,10 @@ namespace NetCore.Ambev.Abstractions.Entities
                 //Purchases between 10 and 20 identical items
                 ValidatePurchasesBetweenTenAndTwentyIdenticalItems(products);
             }
+            else
+            {
+                ApplyDiscount(products, 0);
+            }
         }
 
         public Sale() { }
@@ -60,7 +64,7 @@ namespace NetCore.Ambev.Abstractions.Entities
 
         private void ValidateDomain(IEnumerable<Product> products)
         {
-            DomainValidation.When(!products.Any(),
+            DomainValidation.When(products is null || !products.Any(),
                 "Invalid products list. Sale mut be have almost one product.");
 
             DomainValidation.When(products.Count() > 20,

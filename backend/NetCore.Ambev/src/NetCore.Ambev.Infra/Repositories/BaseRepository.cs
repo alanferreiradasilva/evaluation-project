@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NetCore.Ambev.Abstractions.Entities;
+using NetCore.Ambev.Abstractions.Entities.Paging;
 using NetCore.Ambev.Abstractions.Repositories;
+using System.Linq.Expressions;
 
 namespace NetCore.Ambev.Infra.Repositories
 {
@@ -49,6 +51,30 @@ namespace NetCore.Ambev.Infra.Repositories
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<PagedList<T>> GetListAsync(
+            Expression<Func<T, bool>> filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            int? page = null,
+            int? pageSize = null)
+        {
+            var query = _dbSet.AsQueryable();
+
+            if (filter != null)
+                query = query.Where(filter);
+
+            if (orderBy != null)
+                query = orderBy(query);
+
+            var totalItems = await query.CountAsync();
+
+            if (page.HasValue && pageSize.HasValue)
+                query = query.Skip(page.Value).Take(pageSize.Value);
+
+            var items = await query.ToListAsync();
+
+            return new PagedList<T>(items, totalItems, page ?? 0, pageSize ?? 0);
         }
     }
 }
